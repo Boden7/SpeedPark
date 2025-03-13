@@ -13,7 +13,7 @@
         android:id="@+id/SpeedPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-thin"
+        android:fontFamily="sans-serif-light"
         android:text="SpeedPark"
         android:textColor="@color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
