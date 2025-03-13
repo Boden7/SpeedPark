@@ -19,8 +19,13 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         // temporary
-        val backButton = findViewById<Button>(R.id.backButton)
-        backButton.setOnClickListener {
+        val userButton = findViewById<Button>(R.id.userButton)
+        userButton.setOnClickListener {
+            val intent = Intent(this, UserView::class.java)
+            startActivity(intent);
+        }
+        val adminButton = findViewById<Button>(R.id.adminButton)
+        adminButton.setOnClickListener {
             val intent = Intent(this, AdminView::class.java)
             startActivity(intent);
         }

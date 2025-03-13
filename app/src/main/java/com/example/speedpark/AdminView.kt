@@ -3,6 +3,7 @@
 //Due: 11/15/24
 package com.example.speedpark
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -50,21 +51,6 @@ class AdminView : AppCompatActivity() {
             }
         }
 
-        //Function to update a parking area, update it in the parking area list, & update the RV
-        fun update(parkingArea: ParkingArea, isChecked: Boolean){
-            //Get the parking area from the list and update its check value
-            val parkingAreaInList = parkingAreas.find {it.id == parkingArea.id}
-            if (parkingAreaInList != null && parkingAreaInList.id == parkingArea.id && parkingAreaInList.name == parkingArea.name) {
-                parkingAreaInList.isChecked = isChecked
-                //Update the parking area in the database
-                parkingAreaDatabaseHelper.updateParkingArea(parkingArea.id, isChecked)
-                //Update the RV when it is ready
-                parkingAreaRecyclerView.post {
-                    parkingAreaAdapter.updateParkingAreas(parkingAreas)
-                }
-            }
-        }
-
         //Function to delete a parking area, remove it from the parking area list, & update the RV
         fun delete(parkingArea: ParkingArea){
             //Delete the parking area from the RV
@@ -75,9 +61,15 @@ class AdminView : AppCompatActivity() {
             parkingAreaAdapter.updateParkingAreas(parkingAreas)
         }
 
+        val logoutButton = findViewById<Button>(R.id.logoutButton)
+        logoutButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent);
+        }
+
         //Creating the RV and its adapter
         parkingAreaRecyclerView = findViewById(R.id.rvData)
-        parkingAreaAdapter = ParkingAreaAdapter(this, parkingAreas, {parkingArea, isChecked -> update(parkingArea, isChecked)}, {parkingArea -> delete(parkingArea)})
+        parkingAreaAdapter = ParkingAreaAdapter(this, parkingAreas, {parkingArea -> delete(parkingArea)})
         parkingAreaRecyclerView.adapter = parkingAreaAdapter
         parkingAreaRecyclerView.layoutManager = LinearLayoutManager(this)
         parkingAreas = parkingAreaDatabaseHelper.getAllParkingAreas().toMutableList()
