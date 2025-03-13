@@ -11,15 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SpeedPark"
-        tools:targetApi="31">
+        tools:targetApi="35">
         <activity
-            android:name=".HomePage"
+            android:name=".UserView"
             android:exported="false" />
         <activity
-            android:name=".LoginPage"
+            android:name=".AdminView"
             android:exported="false" />
         <activity
-            android:name=".CreateAccount"
+            android:name=".ParkingSelector"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
