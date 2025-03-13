@@ -77,8 +77,7 @@ class AdminView : AppCompatActivity() {
 
         //Creating the RV and its adapter
         parkingAreaRecyclerView = findViewById(R.id.rvData)
-        parkingAreaAdapter = ParkingAreaAdapter(this, parkingAreas, {parkingArea, isChecked -> update(parkingArea, isChecked)},
-            {parkingArea -> delete(parkingArea)})
+        parkingAreaAdapter = ParkingAreaAdapter(this, parkingAreas, {parkingArea, isChecked -> update(parkingArea, isChecked)}, {parkingArea -> delete(parkingArea)})
         parkingAreaRecyclerView.adapter = parkingAreaAdapter
         parkingAreaRecyclerView.layoutManager = LinearLayoutManager(this)
         parkingAreas = parkingAreaDatabaseHelper.getAllParkingAreas().toMutableList()

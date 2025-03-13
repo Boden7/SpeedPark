@@ -1,6 +1,5 @@
-//Author: Dr. Maha Elouni
-//Course: CSCI 380
-//Due: 11/15/24
+//Author: Boden Kahn
+//Course: CSCI 403 Capstone
 package com.example.speedpark
 
 import android.content.Context
@@ -12,14 +11,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ParkingAreaAdapter(private val context: Context, private var parkingAreas: List<ParkingArea>,
-                  private val onParkingAreaCheckedChange: (ParkingArea, Boolean) -> Unit,
-                         private var onDeleteClick: (ParkingArea) -> Unit
-) : RecyclerView.Adapter<ParkingAreaAdapter.ParkingAreaViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            ParkingAreaViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.parking_area_item,
-            parent, false)
+class ParkingAreaAdapter(private val context: Context, private var parkingAreas: List<ParkingArea>, private val onParkingAreaCheckedChange: (ParkingArea, Boolean) -> Unit, private var onDeleteClick: (ParkingArea) -> Unit) : RecyclerView.Adapter<ParkingAreaAdapter.ParkingAreaViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkingAreaViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.parking_area_item, parent, false)
         return ParkingAreaViewHolder(view)
     }
 
@@ -36,8 +30,7 @@ class ParkingAreaAdapter(private val context: Context, private var parkingAreas:
         notifyDataSetChanged()
     }
 
-    inner class ParkingAreaViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    inner class ParkingAreaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val parkingAreaCheckBox: CheckBox = itemView.findViewById(R.id.parkingAreaCheckBox)
         private val parkingAreaTitle: TextView = itemView.findViewById(R.id.parkingAreaTitle)
         private val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
@@ -46,9 +39,7 @@ class ParkingAreaAdapter(private val context: Context, private var parkingAreas:
             parkingAreaTitle.text = parkingArea.name
             parkingAreaCheckBox.isChecked = parkingArea.isChecked
 
-            parkingAreaCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                onParkingAreaCheckedChange(parkingArea, isChecked)
-            }
+            parkingAreaCheckBox.setOnCheckedChangeListener {_, isChecked -> onParkingAreaCheckedChange(parkingArea, isChecked) }
             deleteButton.setOnClickListener {
                 onDeleteClick(parkingArea)
             }
