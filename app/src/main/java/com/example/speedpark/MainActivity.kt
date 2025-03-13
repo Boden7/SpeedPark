@@ -26,13 +26,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
+    /*Sign up button */
         signupBut.setOnClickListener{
 
             val intent = Intent(this,CreateAccount::class.java)
             startActivity(intent)
         }
-
+    /*Login button*/
         loginBut.setOnClickListener{
 
             val intent = Intent(this, LoginPage::class.java)
