@@ -28,11 +28,19 @@ class LoginPage : AppCompatActivity() {
         buttonLogin.setOnClickListener{
             // Check login credentials here
 
-            // Go to the user view page
-            val intent = Intent(this, UserView::class.java)
-            startActivity(intent)
+
+            // Determine if the user is an admin or not
+            val isAdmin = true
+            if(isAdmin) {
+                // Go to the admin page
+                val intent = Intent(this, AdminView::class.java)
+                startActivity(intent)
+            }
+            else{
+                // Go to the user page
+                val intent = Intent(this, UserView::class.java)
+                startActivity(intent)
+            }
         }
     }
-
-
 }

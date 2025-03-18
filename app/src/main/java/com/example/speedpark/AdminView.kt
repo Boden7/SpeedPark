@@ -19,7 +19,8 @@ class AdminView : AppCompatActivity() {
     private lateinit var parkingAreaAdapter: ParkingAreaAdapter
     private lateinit var parkingAreaRecyclerView: RecyclerView
     private lateinit var addParkingAreaButton: Button
-    private lateinit var parkingAreaEditText: EditText
+    private lateinit var parkingAreaName: EditText
+    private lateinit var parkingAreaURL: EditText
     private var parkingAreas = mutableListOf<ParkingArea>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,16 +33,17 @@ class AdminView : AppCompatActivity() {
             insets
         }
         addParkingAreaButton = findViewById(R.id.addButton)
-        parkingAreaEditText = findViewById(R.id.editText)
+        parkingAreaName = findViewById(R.id.parkingAreaName)
+        parkingAreaURL = findViewById(R.id.parkingAreaURL)
         parkingAreaDatabaseHelper = ParkingAreaDatabaseHelper.getInstance(this)
 
         //On click listener for the add parking area button to add a parking area and update the RV
         addParkingAreaButton.setOnClickListener{
             //Get the parking area's name from the user's input
-            val parkingArea = parkingAreaEditText.text.toString().trim()
-            if (parkingArea.isNotEmpty()) {
+            val parkingAreaName = parkingAreaName.text.toString().trim()
+            if (parkingAreaName.isNotEmpty()) {
                 //Add the parking area to the database
-                parkingAreaDatabaseHelper.addParkingArea(parkingArea)
+                parkingAreaDatabaseHelper.addParkingArea(parkingAreaName) // Update this to also add the url
                 //Update the parking area list
                 parkingAreas = parkingAreaDatabaseHelper.getAllParkingAreas().toMutableList()
                 //Update the RV
