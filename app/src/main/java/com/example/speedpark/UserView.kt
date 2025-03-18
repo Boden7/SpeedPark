@@ -3,6 +3,7 @@ package com.example.speedpark
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,7 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class UserView : AppCompatActivity() {
+
+class UserView : AppCompatActivity(), UserParkingAreaAdapter.OnItemClickListener {
     private lateinit var parkingAreaDatabaseHelper: ParkingAreaDatabaseHelper
     private lateinit var userParkingAreaAdapter: UserParkingAreaAdapter
     private lateinit var userParkingAreaRecyclerView: RecyclerView
@@ -37,10 +39,22 @@ class UserView : AppCompatActivity() {
 
         //Creating the RV and its adapter
         userParkingAreaRecyclerView = findViewById(R.id.rvData)
-        userParkingAreaAdapter = UserParkingAreaAdapter(this, parkingAreas)
+        userParkingAreaAdapter = UserParkingAreaAdapter(this, parkingAreas, this)
         userParkingAreaRecyclerView.adapter = userParkingAreaAdapter
         userParkingAreaRecyclerView.layoutManager = LinearLayoutManager(this)
         parkingAreas = parkingAreaDatabaseHelper.getAllParkingAreas().toMutableList()
         userParkingAreaAdapter.updateParkingAreas(parkingAreas)
+    }
+
+    override fun onItemClick(parkingArea: ParkingArea) {
+        // Handle the click event (e.g., show a Toast or start a new Activity)
+        Toast.makeText(this, "Clicked: ${parkingArea.name}", Toast.LENGTH_SHORT).show()
+        val myIntent = Intent(this, ParkingAreaDetailsActivity::class.java)
+        // get number of available spots and put it as extra
+        val numberOfSpaces = 5
+        myIntent.putExtra("NAME", parkingArea.name)
+        myIntent.putExtra("NUMSPACES", numberOfSpaces)
+
+        startActivity(myIntent)
     }
 }

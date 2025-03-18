@@ -12,21 +12,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home_page)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // temporary
-        val userButton = findViewById<Button>(R.id.userButton)
-        userButton.setOnClickListener {
-            val intent = Intent(this, UserView::class.java)
+
+        val logInButton = findViewById<Button>(R.id.logInButton)
+        logInButton.setOnClickListener {
+            val intent = Intent(this, LoginPage::class.java)
             startActivity(intent);
         }
-        val adminButton = findViewById<Button>(R.id.adminButton)
-        adminButton.setOnClickListener {
-            val intent = Intent(this, AdminView::class.java)
+        val createAccountButton = findViewById<Button>(R.id.createAccountButton)
+        createAccountButton.setOnClickListener {
+            val intent = Intent(this, CreateAccount::class.java)
             startActivity(intent);
         }
     }

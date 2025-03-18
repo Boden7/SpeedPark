@@ -23,10 +23,13 @@ class LoginPage : AppCompatActivity() {
             insets
         }
 
-        /*continue to main interface*/
-        buttonLogin.setOnClickListener{
 
-            val intent = Intent(this, HomePage::class.java)
+        val buttonLogin = findViewById<Button>(R.id.buttonLogin)
+        buttonLogin.setOnClickListener{
+            // Check login credentials here
+
+            // Go to the user view page
+            val intent = Intent(this, UserView::class.java)
             startActivity(intent)
         }
     }

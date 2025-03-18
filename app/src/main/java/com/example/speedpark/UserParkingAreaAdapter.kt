@@ -6,10 +6,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class UserParkingAreaAdapter(private val context: Context, private var parkingAreas: List<ParkingArea>) : RecyclerView.Adapter<UserParkingAreaAdapter.UserParkingAreaViewHolder>(){
+class UserParkingAreaAdapter(private val context: Context, private var parkingAreas: List<ParkingArea>, private val listener: OnItemClickListener) : RecyclerView.Adapter<UserParkingAreaAdapter.UserParkingAreaViewHolder>(){
+    interface OnItemClickListener {
+        fun onItemClick(parkingArea: ParkingArea)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserParkingAreaViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.user_parking_area_item, parent, false)
         return UserParkingAreaViewHolder(view)
@@ -17,7 +21,7 @@ class UserParkingAreaAdapter(private val context: Context, private var parkingAr
 
     override fun onBindViewHolder(holder: UserParkingAreaViewHolder, position: Int) {
         val parkingArea = parkingAreas[position]
-        holder.bind(parkingArea)
+        holder.bind(parkingArea, listener)
     }
 
     override fun getItemCount(): Int = parkingAreas.size
@@ -28,11 +32,14 @@ class UserParkingAreaAdapter(private val context: Context, private var parkingAr
         notifyDataSetChanged()
     }
 
-    inner class UserParkingAreaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class UserParkingAreaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val parkingAreaTitle: TextView = itemView.findViewById(R.id.parkingAreaTitle)
 
-        fun bind(parkingArea: ParkingArea) {
+        fun bind(parkingArea: ParkingArea, listener: OnItemClickListener) {
             parkingAreaTitle.text = parkingArea.name
+            itemView.setOnClickListener {
+                listener.onItemClick(parkingArea) // Notify the listener of the click event
+            }
         }
     }
 }
