@@ -1,5 +1,7 @@
-//Author: Boden Kahn
-//Course: CSCI 403 Capstone
+// Author: Boden Kahn
+// Course: CSCI 403 Capstone
+// Description: This is the adapter for the admin page that displays the name
+// of the parking areas and allows admins to delete them or add new ones.
 package com.example.speedpark
 
 import android.content.Context
@@ -23,19 +25,22 @@ class ParkingAreaAdapter(private val context: Context, private var parkingAreas:
 
     override fun getItemCount(): Int = parkingAreas.size
 
-    // Use when the admin updates an entry
+    // Used to update the rv when the admin updates an entry
     fun updateParkingAreas(newParkingAreas: List<ParkingArea>) {
         parkingAreas = newParkingAreas
         notifyDataSetChanged()
     }
 
     inner class ParkingAreaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        // Create text box and delete button
         private val parkingAreaTitle: TextView = itemView.findViewById(R.id.parkingAreaTitle)
         private val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
 
         fun bind(parkingArea: ParkingArea) {
+            // Set the value of the text box to the parking area name
             parkingAreaTitle.text = parkingArea.name
 
+            // Set the listener to detect delete button clicks and delete the item
             deleteButton.setOnClickListener {
                 onDeleteClick(parkingArea)
             }

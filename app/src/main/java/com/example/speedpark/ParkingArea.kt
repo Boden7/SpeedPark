@@ -1,26 +1,26 @@
-//Author: Boden Kahn
-//Course: Capstone CSCI 403
-//Due: 3/6/25
+// Author: Boden Kahn
+// Course: CSCI 403 Capstone
+// Description: This class holds data of a parking area
 package com.example.speedpark
 
 import android.os.Parcel
 import android.os.Parcelable
 
-class ParkingArea(val id: Int, val name: String, val url: String, var isChecked: Boolean = false)  : Parcelable {
+class ParkingArea(val id: Int, val name: String, val url: String)  : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readBoolean()
+        parcel.readString()!!
     )
 
+    // Set the information for the object
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(name)
         parcel.writeString(url)
-        parcel.writeBoolean(isChecked)
     }
 
+    // Stub method
     override fun describeContents(): Int {
         return 0
     }

@@ -1,6 +1,7 @@
-//Author: Boden Kahn
-//Course: CSCI 403 Capstone
-
+// Author: Boden Kahn
+// Course: CSCI 403 Capstone
+// Description: This class contains methods necessary for the use of the
+// database with the parking areas.
 package com.example.speedpark
 
 import android.content.ContentValues
@@ -11,11 +12,12 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class ParkingAreaDatabaseHelper(applicationContext: Context) : SQLiteOpenHelper(applicationContext, DATABASE_NAME, null, DATABASE_VERSION){
     companion object {
-        private const val DATABASE_NAME = "parkingAreas.db"
+        private const val DATABASE_NAME = "parkingAreaList.db"
         private const val DATABASE_VERSION = 1
-        private const val TABLE_NAME = "parkingAreas"
+        private const val TABLE_NAME = "parkingAreaList"
         private const val COLUMN_ID = "id"
         private const val COLUMN_NAME = "name"
+        private const val COLUMN_URL = "url"
 
         @Volatile
         private var INSTANCE: ParkingAreaDatabaseHelper? = null
@@ -32,7 +34,7 @@ class ParkingAreaDatabaseHelper(applicationContext: Context) : SQLiteOpenHelper(
 
     override fun onCreate(db: SQLiteDatabase){
         val createTableStatement = ("CREATE TABLE $TABLE_NAME ($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "$COLUMN_NAME TEXT)")
+                + "$COLUMN_NAME TEXT, $COLUMN_URL TEXT)")
         db.execSQL(createTableStatement)
     }
 
@@ -43,10 +45,11 @@ class ParkingAreaDatabaseHelper(applicationContext: Context) : SQLiteOpenHelper(
     }
 
     //Add a parking area to the database
-    fun addParkingArea(name: String){
+    fun addParkingArea(name: String, url: String){
         val db = this.writableDatabase
         val cv = ContentValues()
         cv.put(COLUMN_NAME, name)
+        cv.put(COLUMN_URL, url)
         db.insert(TABLE_NAME, null, cv)
     }
 
@@ -56,18 +59,20 @@ class ParkingAreaDatabaseHelper(applicationContext: Context) : SQLiteOpenHelper(
         val db = this.readableDatabase
         //Create the cursor for the database
         val cursor: Cursor = db.query(
-            TABLE_NAME, arrayOf(COLUMN_ID, COLUMN_NAME),
+            TABLE_NAME, arrayOf(COLUMN_ID, COLUMN_NAME, COLUMN_URL),
             null, null, null, null, null
         )
         if (cursor.moveToFirst()) {
             do {
                 val parkingAreaIdIndex = cursor.getColumnIndex(COLUMN_ID)
                 val parkingAreaNameIndex = cursor.getColumnIndex(COLUMN_NAME)
+                val parkingAreaURLIndex = cursor.getColumnIndex(COLUMN_URL)
                 // Check if the indexes are valid
-                if (parkingAreaIdIndex != -1 && parkingAreaNameIndex != -1) {
+                if (parkingAreaIdIndex != -1 && parkingAreaNameIndex != -1 && parkingAreaURLIndex != -1) {
                     val id = cursor.getInt(parkingAreaIdIndex)
                     val parkingAreaName = cursor.getString(parkingAreaNameIndex)
-                    val parkingArea = ParkingArea(id, parkingAreaName)
+                    val parkingAreaURL = cursor.getString(parkingAreaURLIndex)
+                    val parkingArea = ParkingArea(id, parkingAreaName, parkingAreaURL)
                     //Add the item to the list
                     itemList.add(parkingArea)
                 }

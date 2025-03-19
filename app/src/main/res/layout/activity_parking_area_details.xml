@@ -5,12 +5,15 @@
     android:id="@+id/parkingAreaDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ParkingAreaDetailsActivity">
+    tools:context=".ParkingAreaDetailsActivity"
+    android:background="@color/yellow">
 
     <TextView
         android:id="@+id/parkingAreaName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:textColor="@color/yellow"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:background="@color/black"
+        android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
@@ -38,6 +43,8 @@
         android:layout_gravity="center"
         android:text="Back to Parking Area List"
         android:textAllCaps="false"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"

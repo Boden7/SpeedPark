@@ -1,3 +1,7 @@
+// Author: Boden Kahn
+// Course: CSCI 403 Capstone
+// Description: This activity allows users to create an account in our users
+// database with their first and last name, email, and password.
 package com.example.speedpark
 
 import android.content.Intent
@@ -19,12 +23,16 @@ class CreateAccount : AppCompatActivity() {
             insets
         }
 
+        // Make the create account button
         val createButton = findViewById<Button>(R.id.createButton)
         createButton.setOnClickListener{
             // Make sure passwords match
+
             // Enter data in the user database
 
-            // Go to the user view page
+            // Log in
+
+            // Send them back to the home page, where they can log in with their new account
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }

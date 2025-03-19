@@ -1,3 +1,7 @@
+// Author: Boden Kahn
+// Course: CSCI 403 Capstone
+// Description: This activity displays the details of a parking area that are
+// passed in from the user view activity.
 package com.example.speedpark
 
 import android.annotation.SuppressLint
@@ -21,17 +25,21 @@ class ParkingAreaDetailsActivity : AppCompatActivity(){
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Set the back button
         val backButton: Button = findViewById(R.id.backButton)
         backButton.setOnClickListener {
             val intent = Intent(this, UserView::class.java)
             startActivity(intent)
         }
-        var nameDisplay: TextView = findViewById(R.id.parkingAreaName)
-        var numberOfSpaces: TextView = findViewById(R.id.numberOfSpaces)
+
+        val nameDisplay: TextView = findViewById(R.id.parkingAreaName)
+        val numberOfSpaces: TextView = findViewById(R.id.numberOfSpaces)
+        // Get the extra values passed in from the user view
         val name = intent.getStringExtra("NAME")
         val numSpaces = intent.getIntExtra("NUMSPACES", 0)
+        // Display the info grabbed
         nameDisplay.text = "Area Name: $name"
         numberOfSpaces.text = "Available spaces: $numSpaces"
-
     }
 }

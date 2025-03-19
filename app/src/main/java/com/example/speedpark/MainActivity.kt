@@ -1,3 +1,7 @@
+// Author: Boden Kahn
+// Course: CSCI 403 Capstone
+// Description: This is the first activity of our app where users either select
+// to create an account or log in
 package com.example.speedpark
 
 import android.content.Intent
@@ -19,11 +23,14 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        // Make the log in button
         val logInButton = findViewById<Button>(R.id.logInButton)
         logInButton.setOnClickListener {
             val intent = Intent(this, LoginPage::class.java)
             startActivity(intent);
         }
+
+        // Make the create account button
         val createAccountButton = findViewById<Button>(R.id.createAccountButton)
         createAccountButton.setOnClickListener {
             val intent = Intent(this, CreateAccount::class.java)
