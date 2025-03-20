@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "944516400552",
+    "project_id": "speedpark-a586f",
+    "storage_bucket": "speedpark-a586f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944516400552:android:ff53e095bcbd4004f2099d",
+        "android_client_info": {
+          "package_name": "com.example.speedpark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDunki4M2FLHqRywqEz_yLIe_j3OMrU9ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

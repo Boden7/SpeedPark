@@ -39,41 +39,6 @@
         app:layout_constraintVertical_bias="0.027" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/firstName"
-        android:layout_width="410dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/black"
-        android:fontFamily="sans-serif-light"
-        android:hint="First Name"
-        android:maxLines="1"
-
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/yellow"
-        android:textColorHint="@color/yellow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SignupTitle" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/lastName"
-        android:layout_width="410dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="48dp"
-        android:background="@color/black"
-        android:fontFamily="sans-serif-light"
-        android:hint="Last Name"
-        android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/yellow"
-
-
-        android:textColorHint="@color/yellow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName" />
-
-    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/createEmail"
         android:layout_width="410dp"
         android:layout_height="74dp"
@@ -83,13 +48,13 @@
         android:hint="Email"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/yellow"
 
+        android:textColor="@color/yellow"
         android:textColorHint="@color/yellow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastName" />
+        app:layout_constraintTop_toBottomOf="@+id/SignupTitle" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/createPassword"
