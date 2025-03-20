@@ -24,18 +24,20 @@
         android:id="@+id/Inemail"
         android:layout_width="412dp"
         android:layout_height="82dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="8dp"
         android:background="@color/black"
         android:fontFamily="sans-serif-light"
         android:hint="Email"
         android:inputType="textEmailAddress"
-
-
         android:maxLines="1"
+
+
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/yellow"
         android:textColorHint="@color/yellow"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoginTitle" />
 
@@ -48,33 +50,55 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:maxLines="1"
-
-
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+
+
+        android:textColor="@color/yellow"
         android:textColorHint="@color/yellow"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Inemail"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintVertical_bias="0.084" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inAdminCode"
+        android:layout_width="412dp"
+        android:layout_height="82dp"
+        android:background="@color/black"
+        android:fontFamily="sans-serif-light"
+        android:hint="Admin Access Code"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+
+
+        android:textColor="@color/yellow"
+        android:textColorHint="@color/yellow"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/InPassword"
+        app:layout_constraintVertical_bias="0.109" />
 
     <TextView
         android:id="@+id/LoginTitle"
-        android:layout_width="411dp"
-        android:layout_height="140dp"
+        android:layout_width="414dp"
+        android:layout_height="108dp"
         android:fontFamily="sans-serif-light"
 
 
-        android:text="Enter your email and password"
+        android:text="Enter your email and password. Also enter the administrator access code if you are an administrator."
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/black"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/Inusername"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -101,8 +125,10 @@
         android:textColor="@color/yellow"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/InPassword"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
 

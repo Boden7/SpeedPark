@@ -52,6 +52,7 @@ class LoginPage : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+
                 val admin = false
                 // determine if the user is an admin or not
                 if (admin) {
