@@ -1,7 +1,9 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-// Description: This activity is what the user uses to view the parking area
-// list and calculate/view the number of spaces for the desired areas
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This activity is what the user uses to view the parking area
+ * list and calculate/view the number of spaces for the desired areas
+*/
 package com.example.speedpark
 
 import android.content.Intent
@@ -14,11 +16,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 
 class UserView : AppCompatActivity(), UserParkingAreaAdapter.OnItemClickListener {
     private lateinit var parkingAreaDatabaseHelper: ParkingAreaDatabaseHelper
     private lateinit var userParkingAreaAdapter: UserParkingAreaAdapter
     private lateinit var userParkingAreaRecyclerView: RecyclerView
+    private lateinit var auth: FirebaseAuth
     private var parkingAreas = mutableListOf<ParkingArea>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,13 +35,18 @@ class UserView : AppCompatActivity(), UserParkingAreaAdapter.OnItemClickListener
             insets
         }
 
+        auth = FirebaseAuth.getInstance()
+
         parkingAreaDatabaseHelper = ParkingAreaDatabaseHelper.getInstance(this)
 
         // Create the log out button
         val logoutButton = findViewById<Button>(R.id.logoutButton)
         logoutButton.setOnClickListener {
+            // Log out and go back to the initial page
+            Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
+            auth.signOut()
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
 
         //Create the RV and its adapter
@@ -50,7 +59,6 @@ class UserView : AppCompatActivity(), UserParkingAreaAdapter.OnItemClickListener
     }
 
     override fun onItemClick(parkingArea: ParkingArea) {
-        // Handle the click event (e.g., show a Toast or start a new Activity)
         Toast.makeText(this, "Clicked: ${parkingArea.name}", Toast.LENGTH_SHORT).show()
         val myIntent = Intent(this, ParkingAreaDetailsActivity::class.java)
         // get number of available spots and put it as extra

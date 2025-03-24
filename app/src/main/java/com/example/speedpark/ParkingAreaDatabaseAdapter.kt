@@ -1,7 +1,9 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-// Description: This class contains methods necessary for the use of the
-// database with the parking areas.
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This class contains methods necessary for the use of the
+ * database with the parking areas.
+*/
 package com.example.speedpark
 
 import android.content.ContentValues
@@ -33,8 +35,7 @@ class ParkingAreaDatabaseHelper(applicationContext: Context) : SQLiteOpenHelper(
     }
 
     override fun onCreate(db: SQLiteDatabase){
-        val createTableStatement = ("CREATE TABLE $TABLE_NAME ($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "$COLUMN_NAME TEXT, $COLUMN_URL TEXT)")
+        val createTableStatement = ("CREATE TABLE $TABLE_NAME ($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, " + "$COLUMN_NAME TEXT, $COLUMN_URL TEXT)")
         db.execSQL(createTableStatement)
     }
 
@@ -58,17 +59,14 @@ class ParkingAreaDatabaseHelper(applicationContext: Context) : SQLiteOpenHelper(
         val itemList = mutableListOf<ParkingArea>()
         val db = this.readableDatabase
         //Create the cursor for the database
-        val cursor: Cursor = db.query(
-            TABLE_NAME, arrayOf(COLUMN_ID, COLUMN_NAME, COLUMN_URL),
-            null, null, null, null, null
-        )
-        if (cursor.moveToFirst()) {
+        val cursor: Cursor = db.query(TABLE_NAME, arrayOf(COLUMN_ID, COLUMN_NAME, COLUMN_URL), null, null, null, null, null)
+        if (cursor.moveToFirst()){
             do {
                 val parkingAreaIdIndex = cursor.getColumnIndex(COLUMN_ID)
                 val parkingAreaNameIndex = cursor.getColumnIndex(COLUMN_NAME)
                 val parkingAreaURLIndex = cursor.getColumnIndex(COLUMN_URL)
                 // Check if the indexes are valid
-                if (parkingAreaIdIndex != -1 && parkingAreaNameIndex != -1 && parkingAreaURLIndex != -1) {
+                if (parkingAreaIdIndex != -1 && parkingAreaNameIndex != -1 && parkingAreaURLIndex != -1){
                     val id = cursor.getInt(parkingAreaIdIndex)
                     val parkingAreaName = cursor.getString(parkingAreaNameIndex)
                     val parkingAreaURL = cursor.getString(parkingAreaURLIndex)

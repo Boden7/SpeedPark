@@ -1,7 +1,9 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-// Description: This is the first activity of our app where users either select
-// to create an account or log in
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This is the first activity of our app where users either select
+ * to create an account or log in
+*/
 package com.example.speedpark
 
 import android.content.Intent

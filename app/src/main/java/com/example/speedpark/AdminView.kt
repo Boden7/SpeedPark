@@ -1,19 +1,23 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-// Description: This activity is what admins uses to view the parking area
-// list and add or remove parking areas
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This activity is what admins uses to view the parking area
+ * list and add or remove parking areas
+*/
 package com.example.speedpark
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 
 class AdminView : AppCompatActivity() {
     private lateinit var parkingAreaDatabaseHelper: ParkingAreaDatabaseHelper
@@ -22,6 +26,7 @@ class AdminView : AppCompatActivity() {
     private lateinit var addParkingAreaButton: Button
     private lateinit var parkingAreaNameBox: EditText
     private lateinit var parkingAreaURLBox: EditText
+    private lateinit var auth: FirebaseAuth
     private var parkingAreas = mutableListOf<ParkingArea>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +38,9 @@ class AdminView : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        auth = FirebaseAuth.getInstance()
+
         addParkingAreaButton = findViewById(R.id.addButton)
         parkingAreaNameBox = findViewById(R.id.parkingAreaName)
         parkingAreaURLBox = findViewById(R.id.parkingAreaURL)
@@ -54,24 +62,35 @@ class AdminView : AppCompatActivity() {
                 //Clear the text boxes to prepare for the next input
                 parkingAreaNameBox.text.clear()
                 parkingAreaURLBox.text.clear()
+                // Let the user know it was a success
+                Toast.makeText(this, "Area added", Toast.LENGTH_SHORT).show()
             }
+            else{
+                Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         //Function to delete a parking area, remove it from the parking area list, & update the RV
         fun delete(parkingArea: ParkingArea){
-            //Delete the parking area from the RV
+            // Delete the parking area from the RV
             parkingAreaDatabaseHelper.deleteParkingArea(parkingArea.id)
-            //Remove it from the parking area list
+            // Remove it from the parking area list
             parkingAreas.remove(parkingArea)
-            //Update the RV
+            // Update the RV
             parkingAreaAdapter.updateParkingAreas(parkingAreas)
+            // Let the user know it was a success
+            Toast.makeText(this, "Area removed", Toast.LENGTH_SHORT).show()
         }
 
         // Make the log out button
         val logoutButton = findViewById<Button>(R.id.logoutButton)
         logoutButton.setOnClickListener {
+            // Log out and go back to the initial page
+            Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
+            auth.signOut()
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
 
         //Creating the RV and its adapter

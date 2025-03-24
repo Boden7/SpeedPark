@@ -1,7 +1,8 @@
 // Author: Boden Kahn
 // Course: CSCI 403 Capstone
-// Description: This activity allows users to create an account in our users
-// database with their first and last name, email, and password.
+/* Description: This activity allows users to create an account in our users
+ * database with their first and last name, email, and password.
+*/
 package com.example.speedpark
 
 import android.content.Intent
@@ -34,7 +35,9 @@ class CreateAccount : AppCompatActivity() {
         emailInput = findViewById(R.id.createEmail)
         passwordInput = findViewById(R.id.createPassword)
         confirmPasswordInput = findViewById(R.id.createPassword2)
-        auth= FirebaseAuth.getInstance()
+
+        auth = FirebaseAuth.getInstance()
+
         // Make the create account button
         val createButton = findViewById<Button>(R.id.createButton)
         createButton.setOnClickListener{
@@ -47,7 +50,6 @@ class CreateAccount : AppCompatActivity() {
             }
             // Make sure passwords match
             if (password != confirmPassword){
-                // Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 confirmPasswordInput.error = "Passwords do not match"
             }
             // Enter data in the user database

@@ -1,7 +1,9 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-// Description: This is the adapter for the admin page that displays the name
-// of the parking areas and allows admins to delete them or add new ones.
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This is the adapter for the admin page that displays the name
+ * of the parking areas and allows admins to delete them or add new ones.
+*/
 package com.example.speedpark
 
 import android.content.Context

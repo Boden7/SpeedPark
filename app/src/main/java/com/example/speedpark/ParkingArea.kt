@@ -1,6 +1,8 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-// Description: This class holds data of a parking area
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This class holds data of a parking area.
+*/
 package com.example.speedpark
 
 import android.os.Parcel

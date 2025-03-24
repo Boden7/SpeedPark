@@ -1,7 +1,9 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-// Description: This is the adapter for the user page that displays the name of
-// the parking areas and allows users to click on them.
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This is the adapter for the user page that displays the name of
+ * the parking areas and allows users to click on them.
+*/
 package com.example.speedpark
 
 import android.content.Context

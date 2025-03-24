@@ -1,10 +1,11 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-// Description: This activity displays the details of a parking area that are
-// passed in from the user view activity.
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This activity displays the details of a parking area that are
+ * passed in from the user view activity.
+*/
 package com.example.speedpark
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -15,7 +16,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class ParkingAreaDetailsActivity : AppCompatActivity(){
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
