@@ -61,11 +61,7 @@ class UserView : AppCompatActivity(), UserParkingAreaAdapter.OnItemClickListener
     override fun onItemClick(parkingArea: ParkingArea) {
         Toast.makeText(this, "Clicked: ${parkingArea.name}", Toast.LENGTH_SHORT).show()
         val myIntent = Intent(this, ParkingAreaDetailsActivity::class.java)
-        // get number of available spots and put it as extra
-
-        val numberOfSpaces = 5 // temporary
         myIntent.putExtra("NAME", parkingArea.name)
-        myIntent.putExtra("NUMSPACES", numberOfSpaces)
         startActivity(myIntent)
     }
 }

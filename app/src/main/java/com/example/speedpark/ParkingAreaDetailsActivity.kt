@@ -10,6 +10,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -33,13 +34,19 @@ class ParkingAreaDetailsActivity : AppCompatActivity(){
             startActivity(intent)
         }
 
+
         val nameDisplay: TextView = findViewById(R.id.parkingAreaName)
         val numberOfSpaces: TextView = findViewById(R.id.numberOfSpaces)
-        // Get the extra values passed in from the user view
+        val image: ImageView = findViewById(R.id.lotImage)
+        // Get the extra value passed in from the user view
         val name = intent.getStringExtra("NAME")
-        val numSpaces = intent.getIntExtra("NUMSPACES", 0)
+        // Send a request to the server with the name of the parking lot
+
+        // Receive the response from the server with the labeled image
+
         // Display the info grabbed
         nameDisplay.text = "Area Name: $name"
-        numberOfSpaces.text = "Available spaces: $numSpaces"
+        //numberOfSpaces.text = "Available spaces: $numSpaces"
+        //image.setImageResource(null)
     }
 }
