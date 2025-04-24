@@ -17,6 +17,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import android.util.Log
 
 class LoginPage : AppCompatActivity() {
     private lateinit var buttonLogin: Button
@@ -57,7 +61,56 @@ class LoginPage : AppCompatActivity() {
         }
     }
     private fun loginUser(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+        val request = LoginRequest("testuser", "SecurePass123!")
+        RetrofitClient.api.loginUser(request).enqueue(object : Callback<TokenResponse> {
+            override fun onResponse(call: Call<TokenResponse>, response: Response<TokenResponse>) {
+                if (response.isSuccessful) {
+                    val token = response.body()?.token ?: ""
+                    Log.d("LOGIN", "JWT: $token")
+
+                    // Save JWT token in SharedPreferences
+                    val prefs = getSharedPreferences("speedpark_prefs", MODE_PRIVATE)
+                    prefs.edit().putString("jwt_token", token).apply()
+
+                    Toast.makeText(baseContext, "Login successful", Toast.LENGTH_SHORT).show()
+                    // Determine if the user is an admin or not
+                    val adminCode = adminCodeInput.text.toString()
+                    if (adminCode.isEmpty()) {
+                        // Proceed to the user screen if the user doesn't enter a code
+                        val intent = Intent(baseContext, UserView::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        // Validate the code entered by the user
+                        if (adminCode.equals("SpeedPark2025")) {
+                            // Proceed to the admin screen
+                            Toast.makeText(
+                                baseContext,
+                                "Admin authentication successful.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            val intent = Intent(baseContext, AdminView::class.java)
+                            startActivity(intent)
+                        }
+                        else {
+                            // Proceed to the user screen if the code is incorrect
+                            Toast.makeText(baseContext, "Admin authentication failed.", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(baseContext, UserView::class.java)
+                            startActivity(intent)
+                        }
+                    }
+                }
+                else {
+                    Log.e("LOGIN", "Error: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
+                Log.e("LOGIN", "Failed: ${t.message}")
+                Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+            }
+        })
+        /*auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                 // determine if the user is an admin or not
@@ -86,6 +139,6 @@ class LoginPage : AppCompatActivity() {
             else {
                 Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
     }
 }

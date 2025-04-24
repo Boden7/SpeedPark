@@ -6,15 +6,19 @@
 */
 package com.example.speedpark
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import android.util.Log
 
 class ParkingAreaDetailsActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,16 +41,44 @@ class ParkingAreaDetailsActivity : AppCompatActivity(){
 
         val nameDisplay: TextView = findViewById(R.id.parkingAreaName)
         val numberOfSpaces: TextView = findViewById(R.id.numberOfSpaces)
-        val image: ImageView = findViewById(R.id.lotImage)
+
         // Get the extra value passed in from the user view
         val name = intent.getStringExtra("NAME")
-        // Send a request to the server with the name of the parking lot
-
-        // Receive the response from the server with the labeled image
 
         // Display the info grabbed
         nameDisplay.text = "Area Name: $name"
-        //numberOfSpaces.text = "Available spaces: $numSpaces"
-        //image.setImageResource(null)
+
+        // Retrieve saved token from SharedPreferences
+        val sharedPref = getSharedPreferences("speedpark_prefs", Context.MODE_PRIVATE)
+        val token = sharedPref.getString("jwt_token", null)
+
+        // Send a request to the server with the name of the parking lot
+        if (token != null) {
+            val authHeader = "Bearer $token"
+            RetrofitClient.api.getParkingAvailability(authHeader, lot = name.toString())
+                .enqueue(object : Callback<ParkingAvailabilityResponse> {
+                    override fun onResponse(
+                        call: Call<ParkingAvailabilityResponse>,
+                        response: Response<ParkingAvailabilityResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val available = response.body()?.data?.available_spots ?: "?"
+                            numberOfSpaces.text = "Available spaces: $available"
+                        } else {
+                            Log.e("API", "Response error: ${response.errorBody()?.string()}")
+                            numberOfSpaces.text = "Error loading availability"
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ParkingAvailabilityResponse>, t: Throwable) {
+                        Log.e("API", "Network failure: ${t.message}")
+                        numberOfSpaces.text = "Error: ${t.message}"
+                    }
+                })
+        }
+        else {
+            Log.e("ParkingDetails", "JWT token not found")
+            numberOfSpaces.text = "Error: Not authenticated"
+        }
     }
 }

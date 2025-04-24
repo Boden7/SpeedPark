@@ -7,6 +7,7 @@ package com.example.speedpark
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -15,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CreateAccount : AppCompatActivity() {
     private lateinit var emailInput: EditText
@@ -54,8 +58,27 @@ class CreateAccount : AppCompatActivity() {
             }
             // Enter data in the user database
             else{
-                confirmPasswordInput.error=null
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){task ->
+                confirmPasswordInput.error = null
+                val request = RegisterRequest("testuser", password, email)
+                RetrofitClient.api.registerUser(request).enqueue(object : Callback<RegisterResponse> {
+                    override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+                        if (response.isSuccessful) {
+                            // Send them back to the home page, where they can log in with their new account
+                            Toast.makeText(baseContext, "Sign up successful", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(baseContext, MainActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Log.e("REGISTER", "Error: ${response.errorBody()?.string()}")
+                            Toast.makeText(baseContext, "Sign up failed", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                        Log.e("REGISTER", "Failed: ${t.message}")
+                        Toast.makeText(baseContext, "Sign up failed", Toast.LENGTH_SHORT).show()
+                    }
+                })
+                /*auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){task ->
                     if (task.isSuccessful) {
                         // Send them back to the home page, where they can log in with their new account
                         Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT).show()
@@ -66,7 +89,7 @@ class CreateAccount : AppCompatActivity() {
                         Toast.makeText(this, "Sign up failed: ${task.exception?.message}",
                             Toast.LENGTH_SHORT).show()
                     }
-                }
+                }*/
             }
             // Send them back to the home page
             val intent = Intent(this, MainActivity::class.java)
