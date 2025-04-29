@@ -41,12 +41,16 @@ class ParkingAreaDetailsActivity : AppCompatActivity(){
 
         val nameDisplay: TextView = findViewById(R.id.parkingAreaName)
         val numberOfSpaces: TextView = findViewById(R.id.numberOfSpaces)
+        val numberOfSpacesTaken: TextView = findViewById(R.id.numberOfSpacesTaken)
 
         // Get the extra value passed in from the user view
         val name = intent.getStringExtra("NAME")
 
         // Display the info grabbed
-        nameDisplay.text = "Area Name: $name"
+        val periodIndex = name.toString().indexOf('.')
+        val lotID = name?.substring(0, periodIndex)
+        val displayName = name?.substring(periodIndex + 1, name.length)
+        nameDisplay.text = "Area Name: $displayName"
 
         // Retrieve saved token from SharedPreferences
         val sharedPref = getSharedPreferences("speedpark_prefs", Context.MODE_PRIVATE)
@@ -55,18 +59,21 @@ class ParkingAreaDetailsActivity : AppCompatActivity(){
         // Send a request to the server with the name of the parking lot
         if (token != null) {
             val authHeader = "Bearer $token"
-            RetrofitClient.api.getParkingAvailability(authHeader, lot = name.toString())
+            RetrofitClient.api.getParkingAvailability(authHeader, lot = lotID.toString())
                 .enqueue(object : Callback<ParkingAvailabilityResponse> {
                     override fun onResponse(
                         call: Call<ParkingAvailabilityResponse>,
                         response: Response<ParkingAvailabilityResponse>
                     ) {
                         if (response.isSuccessful) {
-                            val available = response.body()?.data?.available_spots ?: "?"
+                            val available = response.body()?.data?.free_spots ?: "?"
                             numberOfSpaces.text = "Available spaces: $available"
+                            val not_available = response.body()?.data?.not_free_spots ?: "?"
+                            numberOfSpacesTaken.text = "Unvailable spaces: $not_available"
                         } else {
                             Log.e("API", "Response error: ${response.errorBody()?.string()}")
                             numberOfSpaces.text = "Error loading availability"
+
                         }
                     }
 

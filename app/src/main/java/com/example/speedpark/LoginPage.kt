@@ -16,7 +16,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.auth.FirebaseAuth
+//import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,11 +24,11 @@ import android.util.Log
 
 class LoginPage : AppCompatActivity() {
     private lateinit var buttonLogin: Button
-    private lateinit var auth: FirebaseAuth
+    //private lateinit var auth: FirebaseAuth
+    private lateinit var usernameInput: EditText
     private lateinit var emailInput: EditText
     private lateinit var passwordInput: EditText
     private lateinit var adminCodeInput: EditText
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +40,9 @@ class LoginPage : AppCompatActivity() {
             insets
         }
 
-        auth = FirebaseAuth.getInstance()
+        //auth = FirebaseAuth.getInstance()
 
+        usernameInput = findViewById(R.id.Inusername)
         emailInput = findViewById(R.id.Inemail)
         passwordInput = findViewById(R.id.InPassword)
         adminCodeInput = findViewById(R.id.InAdminCode)
@@ -50,18 +51,19 @@ class LoginPage : AppCompatActivity() {
         // Set listener to check for button clicks
         buttonLogin.setOnClickListener{
             // Validate login credentials
+            val username = usernameInput.text.toString()
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
-            if (email.isEmpty() || password.isEmpty()) {
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
             }
             else {
-                loginUser(email, password)
+                loginUser(username, email, password)
             }
         }
     }
-    private fun loginUser(email: String, password: String) {
-        val request = LoginRequest("testuser", "SecurePass123!")
+    private fun loginUser(username: String, email: String, password: String) {
+        val request = LoginRequest(username, email, password)
         RetrofitClient.api.loginUser(request).enqueue(object : Callback<TokenResponse> {
             override fun onResponse(call: Call<TokenResponse>, response: Response<TokenResponse>) {
                 if (response.isSuccessful) {
@@ -110,6 +112,7 @@ class LoginPage : AppCompatActivity() {
                 Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
             }
         })
+        // Firebase login
         /*auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()

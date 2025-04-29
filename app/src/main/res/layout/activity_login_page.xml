@@ -24,7 +24,7 @@
         android:id="@+id/Inemail"
         android:layout_width="412dp"
         android:layout_height="82dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="112dp"
         android:background="@color/black"
         android:fontFamily="sans-serif-light"
         android:hint="Email"
@@ -42,26 +42,25 @@
         app:layout_constraintTop_toBottomOf="@+id/LoginTitle" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/InPassword"
+        android:id="@+id/Inusername"
         android:layout_width="412dp"
         android:layout_height="82dp"
+        android:layout_marginTop="4dp"
         android:background="@color/black"
         android:fontFamily="sans-serif-light"
-        android:hint="Password"
-        android:inputType="textPassword"
+        android:hint="Username"
+        android:inputType="text"
         android:maxLines="1"
+
+
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-
-
         android:textColor="@color/yellow"
         android:textColorHint="@color/yellow"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Inemail"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginTitle" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/InAdminCode"
@@ -83,7 +82,29 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/InPassword"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintVertical_bias="0.078" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/InPassword"
+        android:layout_width="412dp"
+        android:layout_height="82dp"
+        android:background="@color/black"
+        android:fontFamily="sans-serif-light"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+
+
+        android:textColor="@color/yellow"
+        android:textColorHint="@color/yellow"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Inemail"
+        app:layout_constraintVertical_bias="0.063" />
 
     <TextView
         android:id="@+id/LoginTitle"
@@ -110,7 +131,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/InPassword"
-        app:layout_constraintVertical_bias="0.881"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/logo" />
 
     <Button

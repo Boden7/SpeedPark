@@ -10,24 +10,27 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvData"
-        android:layout_width="411dp"
-        android:layout_height="505dp"
+        android:layout_width="414dp"
+        android:layout_height="495dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.618" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to SpeedPark! Click a parking area to see a picture of the parking lot labeled with occupied and free spaces."
+        android:text="Welcome to SpeedPark! Click a parking area to see how many spaces the machine language model detects."
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/rvData"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/logoutButton"

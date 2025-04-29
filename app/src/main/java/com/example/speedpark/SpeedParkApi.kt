@@ -11,7 +11,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
-const val BASE_URL = "http://127.0.0.1:5000/"
+const val BASE_URL = "http://10.0.2.2:5000/"
 
 interface SpeedParkApi {
     @POST("register")
@@ -30,12 +30,13 @@ interface SpeedParkApi {
 
 data class RegisterRequest(
     val username: String,
-    val password: String,
-    val email: String
+    val email: String,
+    val password: String
 )
 
 data class LoginRequest(
     val username: String,
+    val email: String,
     val password: String
 )
 
@@ -55,7 +56,8 @@ data class ParkingAvailabilityResponse(
 
 data class ParkingData(
     val lot_name: String,
-    val available_spots: Int,
+    val free_spots: Int,
+    val not_free_spots: Int,
     val timestamp: String
 )
 
