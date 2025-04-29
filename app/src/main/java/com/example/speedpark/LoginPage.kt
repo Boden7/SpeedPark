@@ -24,6 +24,7 @@ import android.util.Log
 
 class LoginPage : AppCompatActivity() {
     private lateinit var buttonLogin: Button
+    private lateinit var buttonBack: Button
     //private lateinit var auth: FirebaseAuth
     private lateinit var usernameInput: EditText
     private lateinit var emailInput: EditText
@@ -46,8 +47,8 @@ class LoginPage : AppCompatActivity() {
         emailInput = findViewById(R.id.Inemail)
         passwordInput = findViewById(R.id.InPassword)
         adminCodeInput = findViewById(R.id.InAdminCode)
-        buttonLogin = findViewById(R.id.buttonLogin)
 
+        buttonLogin = findViewById(R.id.buttonLogin)
         // Set listener to check for button clicks
         buttonLogin.setOnClickListener{
             // Validate login credentials
@@ -60,6 +61,13 @@ class LoginPage : AppCompatActivity() {
             else {
                 loginUser(username, email, password)
             }
+        }
+        buttonBack = findViewById(R.id.buttonBack)
+        // Set listener to check for button clicks
+        buttonBack.setOnClickListener{
+            // Send them back to the home page
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
     private fun loginUser(username: String, email: String, password: String) {

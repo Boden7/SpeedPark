@@ -99,5 +99,13 @@ class CreateAccount : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        val backButton = findViewById<Button>(R.id.backButton)
+        // Set listener to check for button clicks
+        backButton.setOnClickListener{
+            // Send them back to the home page
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
