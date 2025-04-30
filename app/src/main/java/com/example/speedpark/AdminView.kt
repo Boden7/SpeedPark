@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class AdminView : AppCompatActivity() {
     private lateinit var parkingAreaDatabaseHelper: ParkingAreaDatabaseHelper
-    private lateinit var parkingAreaAdapter: ParkingAreaAdapter
+    private lateinit var adminParkingAreaAdapter: AdminParkingAreaAdapter
     private lateinit var parkingAreaRecyclerView: RecyclerView
     private lateinit var addParkingAreaButton: Button
     private lateinit var parkingAreaNameBox: EditText
@@ -55,7 +55,7 @@ class AdminView : AppCompatActivity() {
                 //Update the parking area list
                 parkingAreas = parkingAreaDatabaseHelper.getAllParkingAreas().toMutableList()
                 //Update the RV
-                parkingAreaAdapter.updateParkingAreas(parkingAreas)
+                adminParkingAreaAdapter.updateParkingAreas(parkingAreas)
                 //Clear the text boxes to prepare for the next input
                 parkingAreaNameBox.text.clear()
                 // Let the user know it was a success
@@ -74,7 +74,7 @@ class AdminView : AppCompatActivity() {
             // Remove it from the parking area list
             parkingAreas.remove(parkingArea)
             // Update the RV
-            parkingAreaAdapter.updateParkingAreas(parkingAreas)
+            adminParkingAreaAdapter.updateParkingAreas(parkingAreas)
             // Let the user know it was a success
             Toast.makeText(this, "Area removed", Toast.LENGTH_SHORT).show()
         }
@@ -85,16 +85,16 @@ class AdminView : AppCompatActivity() {
             // Log out and go back to the initial page
             Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
             //auth.signOut()
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HomePage::class.java)
             startActivity(intent)
         }
 
         //Creating the RV and its adapter
         parkingAreaRecyclerView = findViewById(R.id.rvData)
-        parkingAreaAdapter = ParkingAreaAdapter(this, parkingAreas, {parkingArea -> delete(parkingArea)})
-        parkingAreaRecyclerView.adapter = parkingAreaAdapter
+        adminParkingAreaAdapter = AdminParkingAreaAdapter(this, parkingAreas, { parkingArea -> delete(parkingArea)})
+        parkingAreaRecyclerView.adapter = adminParkingAreaAdapter
         parkingAreaRecyclerView.layoutManager = LinearLayoutManager(this)
         parkingAreas = parkingAreaDatabaseHelper.getAllParkingAreas().toMutableList()
-        parkingAreaAdapter.updateParkingAreas(parkingAreas)
+        adminParkingAreaAdapter.updateParkingAreas(parkingAreas)
     }
 }

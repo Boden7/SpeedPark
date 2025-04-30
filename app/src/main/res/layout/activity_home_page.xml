@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Author: Miles Pulliam
+ * Course: CSCI 403 Capstone
+ * Description: This file contains the view that users will use to create an
+ *              account or log in.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,76 +12,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    tools:context=".MainActivity">
+    tools:context=".HomePage">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="305dp"
-        android:layout_height="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:fontFamily="sans-serif-light"
         android:text="SpeedPark"
         android:textColor="@color/black"
         android:textSize="60sp"
-        android:fontFamily="sans-serif-light"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="232dp"
-        android:layout_height="138dp"
+        android:id="@+id/instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
         android:text="Log In Or Create An Account"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-light"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <ImageView
+        android:id="@+id/rmcLogo"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:paddingStart="-256dp"
+        android:paddingTop="-256dp"
+        android:paddingEnd="-256dp"
+        android:paddingBottom="-256dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:srcCompat="@drawable/logo"/>
 
     <Button
         android:id="@+id/logInButton"
-        android:layout_width="wrap_content"
+        android:layout_width="220sp"
         android:layout_height="wrap_content"
-        android:text="Log In"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/black"
-        android:textColor="@color/yellow"
         android:fontFamily="sans-serif-light"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Log In"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.165"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.821" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/createAccountButton"
-        android:layout_width="wrap_content"
+        android:layout_width="220sp"
         android:layout_height="wrap_content"
-        android:text="Create Account"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/black"
-        android:textColor="@color/yellow"
         android:fontFamily="sans-serif-light"
+        android:text="Create Account"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.834"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.821" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="411dp"
-        android:layout_height="351dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,9 +14,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ParkingAreaAdapter(private val context: Context, private var parkingAreas: List<ParkingArea>, private var onDeleteClick: (ParkingArea) -> Unit) : RecyclerView.Adapter<ParkingAreaAdapter.ParkingAreaViewHolder>() {
+class AdminParkingAreaAdapter(private val context: Context, private var parkingAreas: List<ParkingArea>, private var onDeleteClick: (ParkingArea) -> Unit) : RecyclerView.Adapter<AdminParkingAreaAdapter.ParkingAreaViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkingAreaViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.parking_area_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.admin_parking_area_item, parent, false)
         return ParkingAreaViewHolder(view)
     }
 

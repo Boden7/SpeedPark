@@ -1,6 +1,7 @@
-// Author: Boden Kahn
-// Course: CSCI 403 Capstone
-/* Description: This activity allows users to create an account in our users
+/*
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This activity allows users to create an account in our users
  * database with their first and last name, email, and password.
 */
 package com.example.speedpark
@@ -31,7 +32,7 @@ class CreateAccount : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_create_account)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createAccountPage)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -68,7 +69,7 @@ class CreateAccount : AppCompatActivity() {
                         if (response.isSuccessful) {
                             // Send them back to the home page, where they can log in with their new account
                             Toast.makeText(baseContext, "Sign up successful", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(baseContext, MainActivity::class.java)
+                            val intent = Intent(baseContext, HomePage::class.java)
                             startActivity(intent)
                         } else {
                             Log.e("REGISTER", "Error: ${response.errorBody()?.string()}")
@@ -86,7 +87,7 @@ class CreateAccount : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Send them back to the home page, where they can log in with their new account
                         Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, HomePage::class.java)
                         startActivity(intent)
                     }
                     else{
@@ -96,7 +97,7 @@ class CreateAccount : AppCompatActivity() {
                 }*/
             }
             // Send them back to the home page
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HomePage::class.java)
             startActivity(intent)
         }
 
@@ -104,7 +105,7 @@ class CreateAccount : AppCompatActivity() {
         // Set listener to check for button clicks
         backButton.setOnClickListener{
             // Send them back to the home page
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HomePage::class.java)
             startActivity(intent)
         }
     }

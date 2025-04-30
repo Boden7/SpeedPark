@@ -1,185 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This file contains the view that users will use to log in to
+ *              the app.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/loginPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
     tools:context=".LoginPage">
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/LoginInterface"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Enter your username, email, and password. Also enter the admin access code if you are an admin."
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
-
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Inusername"
-        android:layout_width="410dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/yellow"
-        android:fontFamily="sans-serif-light"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
         android:hint="Username"
         android:inputType="text"
         android:maxLines="1"
-
-
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="44sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintTop_toBottomOf="@id/instructions"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginTitle" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Inemail"
-        android:layout_width="410dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/yellow"
-        android:fontFamily="sans-serif-light"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-
-
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="44sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintTop_toBottomOf="@id/Inusername"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Inusername" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/InPassword"
-        android:layout_width="410dp"
-        android:layout_height="74dp"
-        android:background="@color/yellow"
-        android:fontFamily="sans-serif-light"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-
-
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="44sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Inemail"
-        app:layout_constraintVertical_bias="0.074" />
-
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="381dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/black"
-        android:text="Login"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/yellow"
         android:textSize="30sp"
         android:fontFamily="sans-serif-light"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InAdminCode"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@id/Inemail"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/InAdminCode"
-        android:layout_width="410dp"
-        android:layout_height="74dp"
-        android:background="@color/yellow"
-        android:fontFamily="sans-serif-light"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
         android:hint="Admin Access Code"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-
-
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="44sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InPassword"
-        app:layout_constraintVertical_bias="0.087" />
-
-    <TextView
-        android:id="@+id/LoginTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="30sp"
         android:fontFamily="sans-serif-light"
-        android:text="Enter your username, email, and password. Also enter the admin access code if you are an admin."
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/black"
-        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/InPassword"/>
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/black"
+        android:text="Login"
+        android:textColor="@color/yellow"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/InAdminCode"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <Button
         android:id="@+id/buttonBack"
-        android:layout_width="164dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="17dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
         android:backgroundTint="@color/black"
-        android:text="Back"
-        android:textSize="30sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/yellow"
         android:fontFamily="sans-serif-light"
+        android:text="Back"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InPassword"
-        app:layout_constraintVertical_bias="0.934"/>
-
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

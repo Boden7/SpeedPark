@@ -40,7 +40,7 @@ class ParkingAreaDetailsActivity : AppCompatActivity(){
 
 
         val nameDisplay: TextView = findViewById(R.id.parkingAreaName)
-        val numberOfSpaces: TextView = findViewById(R.id.numberOfSpaces)
+        val numberOfSpaces: TextView = findViewById(R.id.numberOfSpacesFree)
         val numberOfSpacesTaken: TextView = findViewById(R.id.numberOfSpacesTaken)
 
         // Get the extra value passed in from the user view
@@ -67,9 +67,9 @@ class ParkingAreaDetailsActivity : AppCompatActivity(){
                     ) {
                         if (response.isSuccessful) {
                             val available = response.body()?.data?.free_spots ?: "?"
-                            numberOfSpaces.text = "Available spaces: $available"
+                            numberOfSpaces.text = "Available Spaces: $available"
                             val not_available = response.body()?.data?.not_free_spots ?: "?"
-                            numberOfSpacesTaken.text = "Unvailable spaces: $not_available"
+                            numberOfSpacesTaken.text = "Unvailable Spaces: $not_available"
                         } else {
                             Log.e("API", "Response error: ${response.errorBody()?.string()}")
                             numberOfSpaces.text = "Error loading availability"

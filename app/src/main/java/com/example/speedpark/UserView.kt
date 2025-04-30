@@ -45,7 +45,7 @@ class UserView : AppCompatActivity(), UserParkingAreaAdapter.OnItemClickListener
             // Log out and go back to the initial page
             Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
             auth.signOut()
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HomePage::class.java)
             startActivity(intent)
         }
 

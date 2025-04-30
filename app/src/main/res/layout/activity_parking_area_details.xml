@@ -1,69 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Author: Boden Kahn
+ * Course: CSCI 403 Capstone
+ * Description: This file contains the view that displays the predictions of
+ *  the machine learning numerically.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parkingAreaDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ParkingAreaDetailsActivity"
-    android:background="@color/yellow">
+    android:background="@color/yellow"
+    tools:context=".ParkingAreaDetailsActivity">
 
     <TextView
         android:id="@+id/parkingAreaName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/yellow"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Area Name: Loading..."
         android:textColor="@color/black"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        android:textSize="36sp"
+        android:fontFamily="sans-serif-light"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/numberOfSpaces"
+        android:id="@+id/numberOfSpacesFree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:background="@color/yellow"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:text="Available Spaces: Loading..."
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/parkingAreaName"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.046"/>
 
     <TextView
         android:id="@+id/numberOfSpacesTaken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/yellow"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:text="Unavailable Spaces: Loading..."
         android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/parkingAreaName"
-        app:layout_constraintVertical_bias="0.159" />
+        app:layout_constraintTop_toBottomOf="@+id/numberOfSpacesFree"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="164dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
         android:backgroundTint="@color/black"
         android:text="Back"
         android:textColor="@color/yellow"
-        android:textSize="30sp"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-light"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.956" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
