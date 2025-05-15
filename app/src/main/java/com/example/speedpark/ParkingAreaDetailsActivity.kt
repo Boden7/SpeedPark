@@ -49,8 +49,8 @@ class ParkingAreaDetailsActivity : AppCompatActivity(){
         // Display the info grabbed
         val periodIndex = name.toString().indexOf('.')
         val lotID = name?.substring(0, periodIndex)
-        val displayName = name?.substring(periodIndex + 1, name.length)
-        nameDisplay.text = "Area Name: $displayName"
+        val displayName = name?.substring(periodIndex + 2, name.length)
+        nameDisplay.text = "$displayName"
 
         // Retrieve saved token from SharedPreferences
         val sharedPref = getSharedPreferences("speedpark_prefs", Context.MODE_PRIVATE)

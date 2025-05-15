@@ -40,7 +40,6 @@ class LoginPage : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         //auth = FirebaseAuth.getInstance()
 
         usernameInput = findViewById(R.id.Inusername)
@@ -92,7 +91,7 @@ class LoginPage : AppCompatActivity() {
                     }
                     else {
                         // Validate the code entered by the user
-                        if (adminCode.equals("SpeedPark2025")) {
+                        if (adminCode.equals("SpeedPark2025!")) {
                             // Proceed to the admin screen
                             Toast.makeText(
                                 baseContext,
@@ -111,7 +110,12 @@ class LoginPage : AppCompatActivity() {
                     }
                 }
                 else {
-                    Log.e("LOGIN", "Error: ${response.errorBody()?.string()}")
+                    var errorMessage = response.errorBody()?.string()
+                    if (errorMessage != null) {
+                        errorMessage = errorMessage.substring(14, errorMessage.length - 4)
+                    }
+                    Log.e("LOGIN", "Error: ${errorMessage}")
+                    Toast.makeText(baseContext, "Sign up failed: ${errorMessage}", Toast.LENGTH_SHORT).show()
                 }
             }
 

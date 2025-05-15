@@ -72,8 +72,12 @@ class CreateAccount : AppCompatActivity() {
                             val intent = Intent(baseContext, HomePage::class.java)
                             startActivity(intent)
                         } else {
-                            Log.e("REGISTER", "Error: ${response.errorBody()?.string()}")
-                            Toast.makeText(baseContext, "Sign up failed", Toast.LENGTH_SHORT).show()
+                            var errorMessage = response.errorBody()?.string()
+                            if (errorMessage != null) {
+                                errorMessage = errorMessage.substring(14, errorMessage.length - 4)
+                            }
+                            Log.e("REGISTER", "Error: ${errorMessage}")
+                            Toast.makeText(baseContext, "Sign up failed: ${errorMessage}", Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -96,9 +100,6 @@ class CreateAccount : AppCompatActivity() {
                     }
                 }*/
             }
-            // Send them back to the home page
-            val intent = Intent(this, HomePage::class.java)
-            startActivity(intent)
         }
 
         val backButton = findViewById<Button>(R.id.backButton)
